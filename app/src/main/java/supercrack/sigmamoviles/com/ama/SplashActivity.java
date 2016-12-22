@@ -1,6 +1,7 @@
 package supercrack.sigmamoviles.com.ama;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import supercrack.sigmamoviles.com.ama.Activity.CN_InicioActivity;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
 import supercrack.sigmamoviles.com.ama.Modelo.Token;
 import supercrack.sigmamoviles.com.ama.Utils.ElementosWebservis;
@@ -39,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
 
                 token = response.body().getAccess_token();
 
-                Toast.makeText(SplashActivity.this , "Token : " + token , Toast.LENGTH_SHORT).show();
+                CN_Incio();
                 dialog.dismiss();
 
             }
@@ -56,13 +58,17 @@ public class SplashActivity extends AppCompatActivity {
     private void showProgress() {
         dialog = new ProgressDialog(this);
         dialog.setCancelable(false);
-        dialog.setTitle("ertgr");
-        dialog.show();
     }
 
     private void CN_Incio()
     {
+        Intent intent = new Intent(this , CN_InicioActivity.class);
 
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(intent);
     }
 
 }

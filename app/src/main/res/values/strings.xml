@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Ama</string>
+    <string name="title_activity_cn__menu">CN_MenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="login">Login</string>
+    <string name="registro">Registro</string>
 </resources>
