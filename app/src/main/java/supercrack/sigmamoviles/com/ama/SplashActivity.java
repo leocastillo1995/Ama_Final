@@ -16,6 +16,7 @@ import supercrack.sigmamoviles.com.ama.Activity.CN_InicioActivity;
 import supercrack.sigmamoviles.com.ama.Activity.SCN_InicioActivity;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
 import supercrack.sigmamoviles.com.ama.Modelo.Token;
+import supercrack.sigmamoviles.com.ama.Preferencia.Preferen;
 import supercrack.sigmamoviles.com.ama.Utils.ElementosWebservis;
 
 public class SplashActivity extends AppCompatActivity {
@@ -23,10 +24,14 @@ public class SplashActivity extends AppCompatActivity {
     private ProgressDialog dialog;
     private String token;
 
+    private Preferen preferen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        preferen = new Preferen(this);
 
         showProgress();
         Retrofit retrofit = new Retrofit.Builder().baseUrl(ServicioAma.URL)
@@ -42,6 +47,8 @@ public class SplashActivity extends AppCompatActivity {
             public void onResponse(Call<Token> call, Response<Token> response) {
 
                 token = response.body().getAccess_token();
+
+                preferen.modificartoken(SplashActivity.this , token);
 
                 CN_Incio();
                 dialog.dismiss();

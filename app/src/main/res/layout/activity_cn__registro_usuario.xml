@@ -56,7 +56,7 @@
                     android:background="@color/blanco_ama"
                     android:ems="10"
                     android:hint="@string/nombre"
-                    android:id="@+id/editText"
+                    android:id="@+id/txt_cnactivityregistro_nombre"
                     android:layout_height="45dp"
                     android:textAlignment="center"
                     android:layout_width="300dp" />
@@ -69,7 +69,7 @@
                     android:ems="10"
                     android:layout_marginTop="15dp"
                     android:hint="@string/apellido"
-                    android:id="@+id/editText2"
+                    android:id="@+id/txt_cnactivityregistro_apellido"
                     android:textAlignment="center" />
 
                 <EditText
@@ -80,7 +80,7 @@
                     android:hint="@string/correo"
                     android:layout_marginTop="15dp"
                     android:background="@color/blanco_ama"
-                    android:id="@+id/editText3"
+                    android:id="@+id/txt_cnactivityregistro_correo"
                     android:textAlignment="center" />
 
                 <EditText
@@ -91,7 +91,7 @@
                     android:hint="@string/dni"
                     android:background="@color/blanco_ama"
                     android:layout_marginTop="15dp"
-                    android:id="@+id/editText4"
+                    android:id="@+id/txt_cnactivityregistro_dni"
                     android:textAlignment="center" />
 
                 <EditText
@@ -102,7 +102,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@color/blanco_ama"
                     android:ems="10"
-                    android:id="@+id/editText5"
+                    android:id="@+id/txt_cnactivityregistro_usuario"
                     android:textAlignment="center" />
 
                 <EditText
@@ -113,14 +113,14 @@
                     android:background="@color/blanco_ama"
                     android:hint="@string/contrasenia"
                     android:layout_marginTop="15dp"
-                    android:id="@+id/editText6"
+                    android:id="@+id/txt_cnactivityregistro_contrasenia"
                     android:textAlignment="center" />
             </LinearLayout>
 
             <Button
                 android:text="@string/siguiente"
                 android:layout_height="wrap_content"
-                android:id="@+id/button2"
+                android:id="@+id/btn_cnactivityregistro_siguiente"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/boton_redondo"
                 app:layout_constraintRight_toRightOf="parent"
