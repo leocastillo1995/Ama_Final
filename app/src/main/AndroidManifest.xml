@@ -21,7 +21,8 @@
         <activity
             android:name=".Activity.CN_MenuActivity"
             android:label="@string/title_activity_cn__menu"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activity.SCN_InicioActivity"></activity>
     </application>
 
 </manifest>
