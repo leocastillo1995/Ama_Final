@@ -9,4 +9,11 @@
     <string name="login">Login</string>
     <string name="registro">Registro</string>
     <string name="inicio">Inicio</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="correo">Correo</string>
+    <string name="dni">DNI</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="siguiente">Siguiente</string>
 </resources>
