@@ -3,6 +3,7 @@ package supercrack.sigmamoviles.com.ama.Conexion;
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -30,4 +31,8 @@ public interface ServicioAma {
 
     @GET("api/usuario/all/")
     Call<ArrayList<Usuario>> getlista(@Header("Authorization") String token);
+
+    @POST("api/usuario/registrar/")
+    Call<Usuario> registrarusuario(@Body Usuario usuario);
+
 }

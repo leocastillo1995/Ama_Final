@@ -178,13 +178,6 @@ public class CN_RegistroUsuarioActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick(R.id.btn_cnactivityregistro_siguiente)
-    public void siguiente()
-    {
-        dato();
-        proceso();
-    }
-
     private String Token()
     {
         SharedPreferences sharedPreferences = getSharedPreferences("Token" , Context.MODE_PRIVATE);
@@ -243,5 +236,12 @@ public class CN_RegistroUsuarioActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    @OnClick(R.id.btn_cnactivityregistro_siguiente)
+    public void siguiente()
+    {
+        dato();
+        proceso();
     }
 }

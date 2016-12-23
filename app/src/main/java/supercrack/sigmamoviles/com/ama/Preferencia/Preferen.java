@@ -12,6 +12,7 @@ public class Preferen {
     public Preferen(Context context)
     {
         CrearToken(context);
+        CrearUsuario(context);
     }
 
     private void CrearToken(Context context)
@@ -21,6 +22,13 @@ public class Preferen {
         sharedPreferences.getString("token" , "");
     }
 
+    private void CrearUsuario(Context context)
+    {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Usuario" , Context.MODE_PRIVATE);
+        sharedPreferences.getString("usuario" , "");
+    }
+
     public void modificartoken(Context context , String token)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("Token" , Context.MODE_PRIVATE);
@@ -28,6 +36,17 @@ public class Preferen {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString("token" , token);
+
+        editor.commit();
+    }
+
+    public void modificarUsuario(Context context , String token)
+    {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Usuario" , Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("usuario" , token);
 
         editor.commit();
     }
