@@ -30,7 +30,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.CN_InicioActivity" />
         </activity>
-        <activity android:name=".Activity.CN_RegistroSexoActivity"></activity>
+        <activity android:name=".Activity.CN_RegistroSexoActivity"
+                  android:parentActivityName=".Activity.CN_RegistroUsuarioActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.CN_RegistroUsuarioActivity" />
+
+        </activity>
     </application>
 
 </manifest>

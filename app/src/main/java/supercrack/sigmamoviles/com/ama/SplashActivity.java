@@ -1,8 +1,10 @@
 package supercrack.sigmamoviles.com.ama;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import supercrack.sigmamoviles.com.ama.Activity.CN_InicioActivity;
+import supercrack.sigmamoviles.com.ama.Activity.CN_MenuActivity;
 import supercrack.sigmamoviles.com.ama.Activity.SCN_InicioActivity;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
 import supercrack.sigmamoviles.com.ama.Modelo.Token;
@@ -71,13 +74,26 @@ public class SplashActivity extends AppCompatActivity {
 
     private void CN_Incio()
     {
-        Intent intent = new Intent(this , CN_InicioActivity.class);
+        if(USUARIO().isEmpty())
+        {
+            Intent intent = new Intent(this , CN_InicioActivity.class);
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        startActivity(intent);
+            startActivity(intent);
+        }
+        else
+        {
+            Intent intent = new Intent(this , CN_MenuActivity.class);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+        }
     }
 
     private void SCN_Inicio()
@@ -107,6 +123,12 @@ public class SplashActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private String USUARIO()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences("Usuario" , Context.MODE_PRIVATE);
+        return sharedPreferences.getString("usuario" , "");
     }
 
 }

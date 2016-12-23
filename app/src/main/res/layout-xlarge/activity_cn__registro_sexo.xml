@@ -45,7 +45,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="200dp"
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/linearLayout3">
 
@@ -62,18 +62,17 @@
 
                         <RadioButton
                             android:text="@string/femenino"
-                            android:layout_width="200dp"
                             android:layout_height="50dp"
                             android:background="@color/blanco_ama"
                             android:id="@+id/radio_cnactivityregistrosexo_femenino"
                             android:layout_weight="1"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textSize="18sp"
-                            android:textColor="@android:color/background_dark" />
+                            android:textColor="@android:color/background_dark"
+                            android:layout_width="280dp" />
 
                         <RadioButton
                             android:text="@string/masculino"
-                            android:layout_width="200dp"
                             android:layout_height="50dp"
                             android:background="@color/blanco_ama"
                             android:layout_marginTop="50dp"
@@ -81,7 +80,8 @@
                             android:layout_weight="1"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textSize="18sp"
-                            android:textColor="@android:color/background_dark" />
+                            android:textColor="@android:color/background_dark"
+                            android:layout_width="280dp" />
                     </RadioGroup>
                 </LinearLayout>
 

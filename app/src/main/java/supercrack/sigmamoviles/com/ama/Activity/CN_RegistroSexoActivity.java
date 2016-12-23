@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -105,15 +104,12 @@ public class CN_RegistroSexoActivity extends AppCompatActivity {
                         preferen.modificarUsuario(CN_RegistroSexoActivity.this , estusuario.getUsuario());
 
                         mensaje("¡Gracias por registrarse en ama!");
-
-                        //Toast.makeText(CN_RegistroSexoActivity.this , "Registro" , Toast.LENGTH_LONG).show();
-
                     }
 
                     @Override
                     public void onFailure(Call<Token> call, Throwable t) {
 
-                        Toast.makeText(CN_RegistroSexoActivity.this , "Error2" , Toast.LENGTH_LONG).show();
+                        mensaje_SCN("Ama a detectado que no está conectado se activara el modo cuestionario para que lo pueda utilizar. Cuando se vuelva conectar se sincronizara los datos registrados ¡Gracias por su atención!");
                     }
                 });
                 dialog.dismiss();
@@ -122,7 +118,7 @@ public class CN_RegistroSexoActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
 
-                Toast.makeText(CN_RegistroSexoActivity.this , "Error1" , Toast.LENGTH_LONG).show();
+                mensaje_SCN("Ama a detectado que no está conectado se activara el modo cuestionario para que lo pueda utilizar. Cuando se vuelva conectar se sincronizara los datos registrados ¡Gracias por su atención!"  );
                 dialog.dismiss();
             }
         });
@@ -167,6 +163,35 @@ public class CN_RegistroSexoActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
+    }
+
+    private void SCN_Inicio()
+    {
+        Intent intent = new Intent(this , SCN_InicioActivity.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(intent);
+    }
+
+    private void mensaje_SCN(String mensaje)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ama");
+        builder.setMessage(mensaje);
+        builder.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                SCN_Inicio();
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @OnClick(R.id.btn_cnactivityregistrosexo_registrar)
