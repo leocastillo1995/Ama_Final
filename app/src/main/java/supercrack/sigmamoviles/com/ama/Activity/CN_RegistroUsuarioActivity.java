@@ -1,17 +1,39 @@
 package supercrack.sigmamoviles.com.ama.Activity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import supercrack.sigmamoviles.com.ama.Array.ArrayUsuario;
+import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
+import supercrack.sigmamoviles.com.ama.Estadicos.EstadicoUsuario;
+import supercrack.sigmamoviles.com.ama.Modelo.Usuario;
 import supercrack.sigmamoviles.com.ama.R;
 
 public class CN_RegistroUsuarioActivity extends AppCompatActivity {
+
+    private ArrayUsuario arrayUsuario = new ArrayUsuario();
+    private ProgressDialog dialog;
 
     @InjectView(R.id.txt_cnactivityregistro_nombre)
     TextView txt_nombre;
@@ -41,6 +63,7 @@ public class CN_RegistroUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cn__registro_usuario);
 
+
         barra("Registro");
         ButterKnife.inject(this);
     }
@@ -65,12 +88,130 @@ public class CN_RegistroUsuarioActivity extends AppCompatActivity {
 
     private void proceso()
     {
+        showProgress();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ServicioAma.URL)
+                .addConverterFactory(GsonConverterFactory.create()).build();
 
+        ServicioAma ama = retrofit.create(ServicioAma.class);
+
+        ama.getlista(Token()).enqueue(new Callback<ArrayList<Usuario>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Usuario>> call, Response<ArrayList<Usuario>> response) {
+
+                arrayUsuario.listUsuario = response.body();
+
+                if(nombre.isEmpty() || apellido.isEmpty() ||
+                   correo.isEmpty() || dni.isEmpty() ||
+                   usuario.isEmpty() || contrasenia.isEmpty())
+                {
+                    mensaje("Falta completar datos");
+                }
+                else
+                {
+                    if(dni.length() != 8)
+                    {
+                        mensaje("El DNI que ingreso no es valido");
+                    }
+                    else
+                    {
+                        if(usuario.length() <=3 || contrasenia.length() <= 3)
+                        {
+                            mensaje("el usuario o la contraseña tiene que tener más de 3 palabras");
+                        }
+                        else
+                        {
+                            String user = arrayUsuario.ObtenerUsuarioUsername(usuario);
+
+                            if(user != null)
+                            {
+                                mensaje("El usuario que ingreso ya existe");
+                            }
+                            else
+                            {
+                                String email = arrayUsuario.ObtenerUsuarioCorreo(correo);
+
+                                if(email != null)
+                                {
+                                    mensaje("El correo que ingreso ya existe");
+                                }
+                                else
+                                {
+                                    Pattern pattern = Pattern
+                                            .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                                                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+                                    Matcher mather = pattern.matcher(correo);
+
+                                    if(mather.find() == false)
+                                    {
+                                        mensaje("Ingrese bien su correo");
+                                    }
+                                    else
+                                    {
+                                        EstadicoUsuario estusuario = new EstadicoUsuario();
+                                        estusuario.setNombre(nombre);
+                                        estusuario.setApellido(apellido);
+                                        estusuario.setCorreo(correo);
+                                        estusuario.setDni(dni);
+                                        estusuario.setUsuario(usuario);
+                                        estusuario.setContrasenia(contrasenia);
+
+                                        Toast.makeText(CN_RegistroUsuarioActivity.this , user , Toast.LENGTH_LONG).show();
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+                dialog.dismiss();
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Usuario>> call, Throwable t) {
+
+                Toast.makeText(CN_RegistroUsuarioActivity.this , "ERROR" , Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            }
+        });
     }
 
     @OnClick(R.id.btn_cnactivityregistro_siguiente)
     public void siguiente()
     {
+        dato();
+        proceso();
+    }
 
+    private String Token()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences("Token" , Context.MODE_PRIVATE);
+        return "bearer " +sharedPreferences.getString("token" , "");
+    }
+
+    private void showProgress() {
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+        dialog.setTitle("Verificando Datos");
+        dialog.show();
+    }
+
+    private void mensaje(String mensaje)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ama");
+        builder.setMessage(mensaje);
+        builder.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.cancel();
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

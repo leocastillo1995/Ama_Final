@@ -61,7 +61,8 @@
                     android:background="@color/blanco_ama"
                     android:ems="10"
                     android:hint="@string/nombre"
-                    android:id="@+id/txt_cnactivity_nombre"
+                    android:id="@+id/txt_cnactivityregistro_nombre"
+                    android:maxLength="20"
                     android:layout_height="45dp"
                     android:textAlignment="center"
                     android:layout_width="550dp" />
@@ -73,7 +74,8 @@
                     android:ems="10"
                     android:layout_marginTop="15dp"
                     android:hint="@string/apellido"
-                    android:id="@+id/txt_cnactivity_apellido"
+                    android:id="@+id/txt_cnactivityregistro_apellido"
+                    android:maxLength="20"
                     android:textAlignment="center"
                     android:layout_width="550dp" />
 
@@ -84,7 +86,8 @@
                     android:hint="@string/correo"
                     android:layout_marginTop="15dp"
                     android:background="@color/blanco_ama"
-                    android:id="@+id/txt_cnactivity_correo"
+                    android:id="@+id/txt_cnactivityregistro_correo"
+                    android:maxLength="30"
                     android:textAlignment="center"
                     android:layout_width="550dp" />
 
@@ -95,7 +98,8 @@
                     android:hint="@string/dni"
                     android:background="@color/blanco_ama"
                     android:layout_marginTop="15dp"
-                    android:id="@+id/txt_cnactivity_dni"
+                    android:id="@+id/txt_cnactivityregistro_dni"
+                    android:maxLength="8"
                     android:textAlignment="center"
                     android:layout_width="550dp" />
 
@@ -106,8 +110,9 @@
                     android:layout_marginTop="15dp"
                     android:background="@color/blanco_ama"
                     android:ems="10"
-                    android:id="@+id/txt_cnactivity_usuario"
+                    android:id="@+id/txt_cnactivityregistro_usuario"
                     android:textAlignment="center"
+                    android:maxLength="20"
                     android:layout_width="550dp" />
 
                 <EditText
@@ -117,14 +122,15 @@
                     android:background="@color/blanco_ama"
                     android:hint="@string/contrasenia"
                     android:layout_marginTop="15dp"
-                    android:id="@+id/txt_cnactivity_contrasenia"
+                    android:id="@+id/txt_cnactivityregistro_contrasenia"
+                    android:maxLength="20"
                     android:textAlignment="center"
                     android:layout_width="550dp" />
             </LinearLayout>
 
             <Button
                 android:text="@string/siguiente"
-                android:id="@+id/btn_cnactivity_siguiente"
+                android:id="@+id/btn_cnactivityregistro_siguiente"
                 android:background="@drawable/boton_redondo"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="30sp"

@@ -57,6 +57,7 @@
                     android:ems="10"
                     android:hint="@string/nombre"
                     android:id="@+id/txt_cnactivityregistro_nombre"
+                    android:maxLength="20"
                     android:layout_height="45dp"
                     android:textAlignment="center"
                     android:layout_width="300dp" />
@@ -70,6 +71,7 @@
                     android:layout_marginTop="15dp"
                     android:hint="@string/apellido"
                     android:id="@+id/txt_cnactivityregistro_apellido"
+                    android:maxLength="20"
                     android:textAlignment="center" />
 
                 <EditText
@@ -81,6 +83,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@color/blanco_ama"
                     android:id="@+id/txt_cnactivityregistro_correo"
+                    android:maxLength="30"
                     android:textAlignment="center" />
 
                 <EditText
@@ -92,6 +95,7 @@
                     android:background="@color/blanco_ama"
                     android:layout_marginTop="15dp"
                     android:id="@+id/txt_cnactivityregistro_dni"
+                    android:maxLength="8"
                     android:textAlignment="center" />
 
                 <EditText
@@ -103,6 +107,7 @@
                     android:background="@color/blanco_ama"
                     android:ems="10"
                     android:id="@+id/txt_cnactivityregistro_usuario"
+                    android:maxLength="20"
                     android:textAlignment="center" />
 
                 <EditText
@@ -114,6 +119,7 @@
                     android:hint="@string/contrasenia"
                     android:layout_marginTop="15dp"
                     android:id="@+id/txt_cnactivityregistro_contrasenia"
+                    android:maxLength="20"
                     android:textAlignment="center" />
             </LinearLayout>
 
