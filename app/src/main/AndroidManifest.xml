@@ -23,13 +23,14 @@
             android:label="@string/title_activity_cn__menu"
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.SCN_InicioActivity" />
-        <activity android:name=".Activity.CN_RegistroUsuarioActivity"
-                  android:parentActivityName=".Activity.CN_InicioActivity">
-
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.CN_InicioActivity"></meta-data>
-
+        <activity
+            android:name=".Activity.CN_RegistroUsuarioActivity"
+            android:parentActivityName=".Activity.CN_InicioActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.CN_InicioActivity" />
         </activity>
+        <activity android:name=".Activity.CN_RegistroSexoActivity"></activity>
     </application>
 
 </manifest>

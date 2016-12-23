@@ -6,7 +6,7 @@
     android:id="@+id/activity_cn__registro_usuario"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/paisajecell"
+    android:background="@drawable/paisajetablet"
     tools:context="supercrack.sigmamoviles.com.ama.Activity.CN_RegistroUsuarioActivity">
 
     <include layout="@layout/tool_bar"

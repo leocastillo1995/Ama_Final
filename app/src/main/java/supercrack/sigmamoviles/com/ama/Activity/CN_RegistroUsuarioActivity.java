@@ -3,6 +3,7 @@ package supercrack.sigmamoviles.com.ama.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -10,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -156,7 +156,8 @@ public class CN_RegistroUsuarioActivity extends AppCompatActivity {
                                         estusuario.setUsuario(usuario);
                                         estusuario.setContrasenia(contrasenia);
 
-                                        Toast.makeText(CN_RegistroUsuarioActivity.this , user , Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(CN_RegistroUsuarioActivity.this , CN_RegistroSexoActivity.class);
+                                        startActivity(intent);
                                     }
 
                                 }
@@ -171,7 +172,7 @@ public class CN_RegistroUsuarioActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ArrayList<Usuario>> call, Throwable t) {
 
-                Toast.makeText(CN_RegistroUsuarioActivity.this , "ERROR" , Toast.LENGTH_LONG).show();
+                mensaje_SCN("Ama a detectado que no está conectado se activara el modo cuestionario para que lo pueda utilizar. Cuando se vuelva conectar se sincronizara los datos registrados ¡Gracias por su atención!");
                 dialog.dismiss();
             }
         });
@@ -207,6 +208,35 @@ public class CN_RegistroUsuarioActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 dialogInterface.cancel();
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void SCN_Inicio()
+    {
+        Intent intent = new Intent(this , SCN_InicioActivity.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(intent);
+    }
+
+    private void mensaje_SCN(String mensaje)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ama");
+        builder.setMessage(mensaje);
+        builder.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                SCN_Inicio();
 
             }
         });
