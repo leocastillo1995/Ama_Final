@@ -41,4 +41,11 @@ public class CN_InicioActivity extends AppCompatActivity {
         Intent intent = new Intent(this , CN_RegistroUsuarioActivity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.btn_cnactivity_login)
+    public void login()
+    {
+        Intent intent = new Intent(this , CN_LogueoUsuarioActivity.class);
+        startActivity(intent);
+    }
 }
