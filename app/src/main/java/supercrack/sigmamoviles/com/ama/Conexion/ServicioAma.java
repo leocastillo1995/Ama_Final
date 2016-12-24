@@ -35,4 +35,7 @@ public interface ServicioAma {
     @POST("api/usuario/registrar/")
     Call<Usuario> registrarusuario(@Body Usuario usuario);
 
+    @GET("api/usuario/obtener/")
+    Call<Usuario> getobtener(@Header("Authorization") String token);
+
 }
