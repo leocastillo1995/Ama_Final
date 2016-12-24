@@ -20,4 +20,13 @@
     <string name="masculino">Masculino</string>
     <string name="registrar">Registrar</string>
     <string name="ingresar">Ingresar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contenido">En AMA EDU! fomentamos el desarrollo integral de niños en la primera infancia a través del empoderamiento de sus padres con información, consejos y estrategias que pueden aplicar con sus hijos.</string>
+    <string name="correoama">ama@amaeducation.com</string>
+    <string name="paginaama">www.amaeducation.com.pe</string>
+    <string name="sisol">www.sisol.gob.pe</string>
+    <string name="infosalud">INFOSALUD MINSA</string>
+    <string name="cunamas">Cuna Más</string>
 </resources>

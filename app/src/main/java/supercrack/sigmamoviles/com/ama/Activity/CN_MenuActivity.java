@@ -1,7 +1,9 @@
 package supercrack.sigmamoviles.com.ama.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,10 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import supercrack.sigmamoviles.com.ama.Preferencia.Preferen;
 import supercrack.sigmamoviles.com.ama.R;
+import supercrack.sigmamoviles.com.ama.Fragment.CN_AcercaDeFragment;
 
 public class CN_MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Preferen preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,8 @@ public class CN_MenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        preference = new Preferen(this);
     }
 
     @Override
@@ -70,19 +78,33 @@ public class CN_MenuActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        /*if (id == R.id.nav_camera) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        if (id == R.id.menu_inicio) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.menu_foro) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.menu_perfil) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.menu_acercade) {
 
-        } else if (id == R.id.nav_share) {
+            fragmentManager.beginTransaction().replace(R.id.content_cn__menu , new CN_AcercaDeFragment()).commit();
+            getSupportActionBar().setTitle(item.getTitle());
+            item.setCheckable(true);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.menu_salir) {
 
-        }*/
+            Intent intent = new Intent(this , CN_InicioActivity.class);
+
+            preference.modificarUsuario(this , null);
+            preference.modificartoken(this , null);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
