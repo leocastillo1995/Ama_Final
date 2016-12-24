@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -21,12 +20,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
 import supercrack.sigmamoviles.com.ama.Modelo.Token;
+import supercrack.sigmamoviles.com.ama.Preferencia.Preferen;
 import supercrack.sigmamoviles.com.ama.R;
 import supercrack.sigmamoviles.com.ama.Utils.ElementosWebservis;
 
 public class CN_LogueoUsuarioActivity extends AppCompatActivity {
 
     private ProgressDialog dialog;
+    private Preferen preferen;
 
     @InjectView(R.id.txt_cnactivityinicio_usuario)
     TextView txt_usuario;
@@ -44,6 +45,7 @@ public class CN_LogueoUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cn__logueo_usuario);
 
+        preferen = new Preferen(this);
         barra("Login");
         ButterKnife.inject(this);
     }
@@ -99,7 +101,16 @@ public class CN_LogueoUsuarioActivity extends AppCompatActivity {
                 {
                     if(response.isSuccessful())
                     {
-                        Toast.makeText(CN_LogueoUsuarioActivity.this , "ingreso" , Toast.LENGTH_LONG).show();
+                        preferen.modificartoken(CN_LogueoUsuarioActivity.this , response.body().getAccess_token());
+                        preferen.modificarUsuario(CN_LogueoUsuarioActivity.this , usuario);
+
+                        Intent intent = new Intent(CN_LogueoUsuarioActivity.this , CN_MenuActivity.class);
+
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(intent);
                     }
                     else
                     {
