@@ -36,6 +36,9 @@ public class CN_AcercaDeFragment extends Fragment{
     @InjectView(R.id.btn_fragmentacercade_cunamas)
     View btn_cunama;
 
+    @InjectView(R.id.btn_fragmentacercade_segurosalud)
+    View btn_segurointegral;
+
 
     public CN_AcercaDeFragment() {
         // Required empty public constructor
@@ -113,6 +116,7 @@ public class CN_AcercaDeFragment extends Fragment{
                     Uri url = Uri.parse("http://www.cunamas.gob.pe/");
 
                     Intent intent = new Intent(Intent.ACTION_VIEW , url);
+
                     startActivity(intent);
                 }
                 else
@@ -120,6 +124,42 @@ public class CN_AcercaDeFragment extends Fragment{
                     Uri uri = Uri.parse("tel:017482000");
 
                     Intent intent = new Intent(Intent.ACTION_CALL , uri);
+
+                    startActivity(intent);
+                }
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    @OnClick(R.id.btn_fragmentacercade_segurosalud)
+    public void segurointegral()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        final String[] list = {"visitar pagina" , "Realizar llamada"};
+
+        builder.setItems(list, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                if(list[i].equals("visitar pagina"))
+                {
+                    Uri url = Uri.parse("http://www.sis.gob.pe/");
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW , url);
+
+                    startActivity(intent);
+                }
+                else
+                {
+                    Uri uri = Uri.parse("tel:015145555");
+
+                    Intent intent = new Intent(Intent.ACTION_CALL , uri);
+
                     startActivity(intent);
                 }
 
