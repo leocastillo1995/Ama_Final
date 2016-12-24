@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import supercrack.sigmamoviles.com.ama.Fragment.CN_PerfilUsuarioFragment;
 import supercrack.sigmamoviles.com.ama.Preferencia.Preferen;
 import supercrack.sigmamoviles.com.ama.R;
 import supercrack.sigmamoviles.com.ama.Fragment.CN_AcercaDeFragment;
@@ -81,10 +82,14 @@ public class CN_MenuActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (id == R.id.menu_inicio) {
-            // Handle the camera action
+
         } else if (id == R.id.menu_foro) {
 
         } else if (id == R.id.menu_perfil) {
+
+            fragmentManager.beginTransaction().replace(R.id.content_cn__menu , new CN_PerfilUsuarioFragment()).commit();
+            getSupportActionBar().setTitle(item.getTitle());
+            item.setCheckable(true);
 
         } else if (id == R.id.menu_acercade) {
 

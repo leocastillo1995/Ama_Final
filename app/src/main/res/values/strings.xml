@@ -30,4 +30,5 @@
     <string name="infosalud">INFOSALUD MINSA</string>
     <string name="cunamas">Cuna Más</string>
     <string name="segurodesalud">Seguro Integral de Salud</string>
+    <string name="editar">Editar</string>
 </resources>
