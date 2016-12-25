@@ -47,6 +47,8 @@ public class CN_EditarPerfilActivity extends AppCompatActivity {
     @InjectView(R.id.btn_activityeditarperfil_guardar)
     View btn_guardar;
 
+    String nombre , apellido , correo , dni;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +77,7 @@ public class CN_EditarPerfilActivity extends AppCompatActivity {
                 }
 
                 txt_nombre.setText(response.body().getFirst_name());
-                txt_apellido.setText(response.body().getFirst_name());
+                txt_apellido.setText(response.body().getLast_name());
                 txt_correo.setText(response.body().getEmail());
                 txt_dni.setText(response.body().getNro_identificacion());
                 dialog.dismiss();
@@ -141,9 +143,45 @@ public class CN_EditarPerfilActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    private void dato()
+    {
+        nombre = txt_nombre.getText().toString();
+        apellido = txt_apellido.getText().toString();
+        correo = txt_correo.getText().toString();
+        dni = txt_dni.getText().toString();
+    }
+
+    private void proceso()
+    {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ServicioAma.URL)
+                            .addConverterFactory(GsonConverterFactory.create()).build();
+
+        ServicioAma ama = retrofit.create(ServicioAma.class);
+
+        Usuario usuario = new Usuario("alma" , "alma" , "leccbo@hotmail.com" , "lea" , "castillo" , "72851278" , 0);
+        usuario.setId(16);
+
+        ama.getactualizar(Token() , usuario).enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+
+                Intent intent = new Intent(CN_EditarPerfilActivity.this , CN_MenuActivity.class);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+
+            }
+        });
+    }
+
+
     @OnClick(R.id.btn_activityeditarperfil_guardar)
     public void guardar()
     {
-
+        dato();
+        proceso();
     }
 }

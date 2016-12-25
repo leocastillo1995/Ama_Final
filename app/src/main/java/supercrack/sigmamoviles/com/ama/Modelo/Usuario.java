@@ -8,6 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Usuario {
 
+    @SerializedName("id")
+    private int id;
+
     @SerializedName("username")
     private String username;
 
@@ -93,5 +96,13 @@ public class Usuario {
 
     public void setGenero(int genero) {
         this.genero = genero;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
