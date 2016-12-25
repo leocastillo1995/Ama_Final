@@ -38,14 +38,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.CN_RegistroUsuarioActivity" />
         </activity>
-        <activity android:name=".Activity.CN_LogueoUsuarioActivity"
-                  android:parentActivityName=".Activity.CN_InicioActivity">
-
+        <activity
+            android:name=".Activity.CN_LogueoUsuarioActivity"
+            android:parentActivityName=".Activity.CN_InicioActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.CN_InicioActivity" />
-
         </activity>
+        <activity android:name=".Activity.CN_EditarPerfilActivity"></activity>
     </application>
 
 </manifest>

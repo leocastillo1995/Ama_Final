@@ -3,15 +3,17 @@ package supercrack.sigmamoviles.com.ama.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -21,6 +23,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import supercrack.sigmamoviles.com.ama.Activity.CN_EditarPerfilActivity;
+import supercrack.sigmamoviles.com.ama.Activity.SCN_InicioActivity;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
 import supercrack.sigmamoviles.com.ama.Modelo.Usuario;
 import supercrack.sigmamoviles.com.ama.R;
@@ -94,7 +98,7 @@ public class CN_PerfilUsuarioFragment extends Fragment {
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
 
-                Toast.makeText(getContext() , "ERROR" , Toast.LENGTH_LONG).show();
+                mensaje("Ama a detectado que no está conectado se activara el modo cuestionario para que lo pueda utilizar. Cuando se vuelva conectar se sincronizara los datos registrados ¡Gracias por su atención!");
                 dialog.dismiss();
             }
         });
@@ -116,10 +120,45 @@ public class CN_PerfilUsuarioFragment extends Fragment {
         dialog.show();
     }
 
+    private void SCN_Inicio()
+    {
+        Intent intent = new Intent(getContext() , SCN_InicioActivity.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(intent);
+    }
+
+    private void mensaje(String mensaje)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Ama");
+        builder.setMessage(mensaje);
+        builder.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                SCN_Inicio();
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
     @OnClick(R.id.btn_fragmentperfilusuario_editar)
     public void editar()
     {
-        Toast.makeText(getContext() , "HOLA" , Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getContext() , CN_EditarPerfilActivity.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(intent);
     }
 
 }
