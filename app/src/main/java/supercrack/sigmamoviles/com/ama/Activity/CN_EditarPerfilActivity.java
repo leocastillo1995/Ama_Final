@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -28,6 +31,8 @@ import supercrack.sigmamoviles.com.ama.R;
 public class CN_EditarPerfilActivity extends AppCompatActivity {
 
     private ProgressDialog dialog;
+    private int id , genero;
+    String usuario;
 
     @InjectView(R.id.img_activityeditarperfil_imagenperfil)
     ImageView img_perfil;
@@ -57,7 +62,7 @@ public class CN_EditarPerfilActivity extends AppCompatActivity {
         ButterKnife.inject(this);
         barra("Editar Perfil");
 
-        showProgress();
+        showProgress("Cargando sus datos");
         Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(ServicioAma.URL).addConverterFactory(GsonConverterFactory.create()).build();
 
@@ -80,6 +85,9 @@ public class CN_EditarPerfilActivity extends AppCompatActivity {
                 txt_apellido.setText(response.body().getLast_name());
                 txt_correo.setText(response.body().getEmail());
                 txt_dni.setText(response.body().getNro_identificacion());
+                id = response.body().getId();
+                usuario = response.body().getUsername();
+                genero = response.body().getGenero();
                 dialog.dismiss();
 
             }
@@ -87,7 +95,7 @@ public class CN_EditarPerfilActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
 
-                mensaje("Ama a detectado que no está conectado se activara el modo cuestionario para que lo pueda utilizar. Cuando se vuelva conectar se sincronizara los datos registrados ¡Gracias por su atención!");
+                mensaje_SCN("Ama a detectado que no está conectado se activara el modo cuestionario para que lo pueda utilizar. Cuando se vuelva conectar se sincronizara los datos registrados ¡Gracias por su atención!");
                 dialog.dismiss();
             }
         });
@@ -107,10 +115,10 @@ public class CN_EditarPerfilActivity extends AppCompatActivity {
         return "bearer " +sharedPreferences.getString("token" , "");
     }
 
-    private void showProgress() {
+    private void showProgress(String titulo) {
         dialog = new ProgressDialog(this);
         dialog.setCancelable(false);
-        dialog.setTitle("Cargando sus datos");
+        dialog.setTitle(titulo);
         dialog.show();
     }
 
@@ -125,7 +133,109 @@ public class CN_EditarPerfilActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void proceso()
+    {
+
+        if(nombre.isEmpty() || apellido.isEmpty() ||
+                correo.isEmpty() || dni.isEmpty())
+        {
+            mensaje("Falta completar datos");
+        }
+        else
+        {
+            if(dni.length() != 8)
+            {
+                mensaje("El DNI que ingreso no es valido");
+            }
+            else
+            {
+                Pattern pattern = Pattern
+                        .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+                Matcher mather = pattern.matcher(correo);
+
+                if(mather.find() == false)
+                {
+                    mensaje("Ingrese bien su correo");
+                }
+                else
+                {
+                    Usuario usua = new Usuario();
+                    usua.setId(id);
+                    usua.setUsername(usuario);
+                    usua.setEmail(correo);
+                    usua.setFirst_name(nombre);
+                    usua.setLast_name(apellido);
+                    usua.setNro_identificacion(dni);
+                    usua.setGenero(genero);
+
+                    showProgress("Modificando sus datos personales");
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl(ServicioAma.URL)
+                                            .addConverterFactory(GsonConverterFactory.create()).build();
+
+                    ServicioAma ama = retrofit.create(ServicioAma.class);
+
+                    ama.getactualizar(Token() , usua).enqueue(new Callback<Usuario>() {
+                        @Override
+                        public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(CN_EditarPerfilActivity.this);
+                            builder.setTitle("Ama");
+                            builder.setMessage("Sus datos se modificaron correctamente");
+                            builder.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    Intent intent = new Intent(CN_EditarPerfilActivity.this , CN_MenuActivity.class);
+
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                    startActivity(intent);
+
+                                }
+                            });
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+
+                            dialog.dismiss();
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<Usuario> call, Throwable t) {
+
+                            mensaje_SCN("Ama a detectado que no está conectado se activara el modo cuestionario para que lo pueda utilizar. Cuando se vuelva conectar se sincronizara los datos registrados ¡Gracias por su atención!");
+
+                            dialog.dismiss();
+
+                        }
+                    });
+                }
+            }
+        }
+    }
+
     private void mensaje(String mensaje)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ama");
+        builder.setMessage(mensaje);
+        builder.setNeutralButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void mensaje_SCN(String mensaje)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Ama");
@@ -149,32 +259,6 @@ public class CN_EditarPerfilActivity extends AppCompatActivity {
         apellido = txt_apellido.getText().toString();
         correo = txt_correo.getText().toString();
         dni = txt_dni.getText().toString();
-    }
-
-    private void proceso()
-    {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(ServicioAma.URL)
-                            .addConverterFactory(GsonConverterFactory.create()).build();
-
-        ServicioAma ama = retrofit.create(ServicioAma.class);
-
-        Usuario usuario = new Usuario("alma" , "alma" , "leccbo@hotmail.com" , "lea" , "castillo" , "72851278" , 0);
-        usuario.setId(16);
-
-        ama.getactualizar(Token() , usuario).enqueue(new Callback<Usuario>() {
-            @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-
-                Intent intent = new Intent(CN_EditarPerfilActivity.this , CN_MenuActivity.class);
-                startActivity(intent);
-
-            }
-
-            @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-
-            }
-        });
     }
 
 

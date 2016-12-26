@@ -12,10 +12,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
+import supercrack.sigmamoviles.com.ama.Fragment.CN_AcercaDeFragment;
 import supercrack.sigmamoviles.com.ama.Fragment.CN_PerfilUsuarioFragment;
+import supercrack.sigmamoviles.com.ama.Modelo.Token;
 import supercrack.sigmamoviles.com.ama.Preferencia.Preferen;
 import supercrack.sigmamoviles.com.ama.R;
-import supercrack.sigmamoviles.com.ama.Fragment.CN_AcercaDeFragment;
+import supercrack.sigmamoviles.com.ama.Utils.ElementosWebservis;
 
 public class CN_MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -99,16 +107,47 @@ public class CN_MenuActivity extends AppCompatActivity
 
         } else if (id == R.id.menu_salir) {
 
-            Intent intent = new Intent(this , CN_InicioActivity.class);
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(ServicioAma.URL)
+                                    .addConverterFactory(GsonConverterFactory.create()).build();
 
-            preference.modificarUsuario(this , null);
-            preference.modificartoken(this , null);
+            ServicioAma ama = retrofit.create(ServicioAma.class);
 
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            ama.Idendificador(ElementosWebservis.client_id , ElementosWebservis.client_secret ,
+                              ElementosWebservis.username , ElementosWebservis.password ,
+                              ElementosWebservis.grant_type).enqueue(new Callback<Token>() {
+                @Override
+                public void onResponse(Call<Token> call, Response<Token> response) {
 
-            startActivity(intent);
+                    Intent intent = new Intent(CN_MenuActivity.this  , CN_InicioActivity.class);
+
+                    preference.modificarUsuario(CN_MenuActivity.this , null);
+                    preference.modificartoken(CN_MenuActivity.this  , response.body().getAccess_token());
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    startActivity(intent);
+
+                }
+
+                @Override
+                public void onFailure(Call<Token> call, Throwable t) {
+
+                    Intent intent = new Intent(CN_MenuActivity.this  , CN_InicioActivity.class);
+
+                    preference.modificarUsuario(CN_MenuActivity.this , null);
+                    preference.modificartoken(CN_MenuActivity.this  , null);
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    startActivity(intent);
+
+                }
+            });
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

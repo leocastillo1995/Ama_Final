@@ -49,11 +49,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
 
-                token = response.body().getAccess_token();
-
-                preferen.modificartoken(SplashActivity.this , token);
-
-                CN_Incio();
+                CN_Incio(response.body().getAccess_token());
                 dialog.dismiss();
 
             }
@@ -72,7 +68,7 @@ public class SplashActivity extends AppCompatActivity {
         dialog.setCancelable(false);
     }
 
-    private void CN_Incio()
+    private void CN_Incio(String tok)
     {
         if(USUARIO().isEmpty())
         {
@@ -81,6 +77,10 @@ public class SplashActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            token = tok;
+
+            preferen.modificartoken(SplashActivity.this , token);
 
             startActivity(intent);
         }

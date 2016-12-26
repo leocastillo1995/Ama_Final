@@ -32,6 +32,11 @@ public class Usuario {
     @SerializedName("genero")
     private int genero;
 
+    public Usuario()
+    {
+
+    }
+
     public Usuario(String username, String password, String email, String first_name, String last_name, String nro_identificacion, int genero) {
         this.username = username;
         this.password = password;

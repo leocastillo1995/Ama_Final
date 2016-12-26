@@ -8,7 +8,6 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import supercrack.sigmamoviles.com.ama.Modelo.Token;
@@ -40,7 +39,6 @@ public interface ServicioAma {
     @GET("api/usuario/obtener/")
     Call<Usuario> getobtener(@Header("Authorization") String token);
 
-    @Headers({"Content-Type: application/json"})
     @PUT("api/usuario/actualizar/")
     Call<Usuario> getactualizar(@Header("Authorization") String token , @Body Usuario usuario);
 
