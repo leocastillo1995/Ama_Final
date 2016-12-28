@@ -17,6 +17,19 @@ public class ArrayUsuario {
 
     }
 
+    public Usuario ObtenerUsuario(String username)
+    {
+        for (Usuario x: listUsuario)
+        {
+            if(x.getUsername().equalsIgnoreCase(username))
+            {
+                return x;
+            }
+        }
+
+        return null;
+    }
+
     public String ObtenerUsuarioCorreo(String correo)
     {
         for (Usuario x: listUsuario)
@@ -42,5 +55,4 @@ public class ArrayUsuario {
 
         return null;
     }
-
 }

@@ -45,7 +45,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.CN_InicioActivity" />
         </activity>
-        <activity android:name=".Activity.CN_EditarPerfilActivity"></activity>
+        <activity android:name=".Activity.CN_EditarPerfilActivity" />
+        <activity android:name=".Activity.CN_TemaForoDetalleActivity" />
+        <activity
+            android:name=".Activity.CN_ComentarioForoActivity"
+            android:parentActivityName=".Activity.CN_TemaForoDetalleActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.CN_TemaForoDetalleActivity" />
+        </activity>
+        <activity android:name=".Activity.CN_Pregunta1Activity"></activity>
     </application>
 
 </manifest>

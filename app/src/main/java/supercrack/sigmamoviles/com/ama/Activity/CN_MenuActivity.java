@@ -19,6 +19,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
 import supercrack.sigmamoviles.com.ama.Fragment.CN_AcercaDeFragment;
+import supercrack.sigmamoviles.com.ama.Fragment.CN_ForoTemaFragment;
+import supercrack.sigmamoviles.com.ama.Fragment.CN_InicioFragment;
 import supercrack.sigmamoviles.com.ama.Fragment.CN_PerfilUsuarioFragment;
 import supercrack.sigmamoviles.com.ama.Modelo.Token;
 import supercrack.sigmamoviles.com.ama.Preferencia.Preferen;
@@ -47,6 +49,11 @@ public class CN_MenuActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         preference = new Preferen(this);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_cn__menu , new CN_InicioFragment()).commit();
+        getSupportActionBar().setTitle("Inicio");
+
     }
 
     @Override
@@ -91,7 +98,15 @@ public class CN_MenuActivity extends AppCompatActivity
 
         if (id == R.id.menu_inicio) {
 
+            fragmentManager.beginTransaction().replace(R.id.content_cn__menu , new CN_InicioFragment()).commit();
+            getSupportActionBar().setTitle(item.getTitle());
+            item.setCheckable(true);
+
         } else if (id == R.id.menu_foro) {
+
+            fragmentManager.beginTransaction().replace(R.id.content_cn__menu , new CN_ForoTemaFragment()).commit();
+            getSupportActionBar().setTitle(item.getTitle());
+            item.setCheckable(true);
 
         } else if (id == R.id.menu_perfil) {
 

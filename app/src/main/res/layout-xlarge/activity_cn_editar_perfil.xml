@@ -5,7 +5,7 @@
     android:id="@+id/activity_cn_editar_perfil"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/paisajecell"
+    android:background="@drawable/paisajetablet"
     tools:context="supercrack.sigmamoviles.com.ama.Activity.CN_EditarPerfilActivity">
 
     <include layout="@layout/tool_bar"
@@ -109,7 +109,7 @@
 
             <Button
                 android:text="@string/guardar"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:id="@+id/btn_activityeditarperfil_guardar"
                 android:background="@drawable/boton_redondo"
                 android:layout_marginTop="50dp"

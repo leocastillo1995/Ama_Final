@@ -10,6 +10,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import supercrack.sigmamoviles.com.ama.Modelo.ComentarioForo;
+import supercrack.sigmamoviles.com.ama.Modelo.RegistroComentario;
+import supercrack.sigmamoviles.com.ama.Modelo.Tema;
 import supercrack.sigmamoviles.com.ama.Modelo.Token;
 import supercrack.sigmamoviles.com.ama.Modelo.Usuario;
 
@@ -42,4 +46,12 @@ public interface ServicioAma {
     @PUT("api/usuario/actualizar/")
     Call<Usuario> getactualizar(@Header("Authorization") String token , @Body Usuario usuario);
 
+    @GET("api/foro/temas/1072a57a-6b50-47f6-865e-28fea29e1de9/")
+    Call<ArrayList<Tema>> getlistaTema(@Header("Authorization") String token);
+
+    @POST("api/foro/temas/comentario/agregar/")
+    Call<ComentarioForo> registroComentario(@Header("Authorization") String token , @Body RegistroComentario registroComentario);
+
+    @GET("api/foro/temas/{uuid}/comentarios/")
+    Call<ArrayList<ComentarioForo>> getlistacomentario(@Path("uuid") String id , @Header("Authorization") String token);
 }
