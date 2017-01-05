@@ -1,8 +1,8 @@
-package supercrack.sigmamoviles.com.ama.Array;
+package supercrack.sigmamoviles.com.ama.Array.Conexion;
 
 import java.util.ArrayList;
 
-import supercrack.sigmamoviles.com.ama.Modelo.Tema;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Tema;
 
 /**
  * Created by eglp on 26/12/2016.

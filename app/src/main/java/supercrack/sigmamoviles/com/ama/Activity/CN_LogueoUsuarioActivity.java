@@ -19,7 +19,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
-import supercrack.sigmamoviles.com.ama.Modelo.Token;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Token;
 import supercrack.sigmamoviles.com.ama.Preferencia.Preferen;
 import supercrack.sigmamoviles.com.ama.R;
 import supercrack.sigmamoviles.com.ama.Utils.ElementosWebservis;
@@ -101,6 +101,7 @@ public class CN_LogueoUsuarioActivity extends AppCompatActivity {
                 {
                     if(response.isSuccessful())
                     {
+
                         preferen.modificartoken(CN_LogueoUsuarioActivity.this , response.body().getAccess_token());
                         preferen.modificarUsuario(CN_LogueoUsuarioActivity.this , usuario);
 

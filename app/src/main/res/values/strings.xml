@@ -33,4 +33,12 @@
     <string name="editar">Editar</string>
     <string name="guardar">Guardar</string>
     <string name="responder">Responder</string>
+    <string name="volver">Volver</string>
+    <string name="edaddetuhijo">¿Qué edad tiene tu hijo?</string>
+    <string name="habilidadhijo">¿Qué habilidad quieres desarrollar en tu hijo?</string>
+    <string name="salir">Salir</string>
+    <string name="mensaje1">¡Hasta Pronto!</string>
+    <string name="mensaje2">Aplica este consejo y sé parte del futuro de tus hijos</string>
+    <string name="inicio2">Regresar al inicio</string>
+    <string name="necesito">Necesito más ayuda</string>
 </resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_scn_video_completo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="supercrack.sigmamoviles.com.ama.Activity.SCN_VideoCompletoActivity">
+
+    <VideoView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/video_scnactvitivivideocompelto_video"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:text="@string/salir"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_scnactvitivivideocompelto_salir"
+        android:background="@drawable/boton_redondo"
+        app:layout_constraintBottom_toBottomOf="@+id/video_scnactvitivivideocompelto_video"
+        app:layout_constraintTop_toTopOf="@+id/video_scnactvitivivideocompelto_video"
+        app:layout_constraintRight_toRightOf="@+id/video_scnactvitivivideocompelto_video"
+        app:layout_constraintLeft_toLeftOf="@+id/video_scnactvitivivideocompelto_video"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginEnd="24dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="18sp"
+        android:textColor="@color/blanco_ama"
+        android:layout_marginTop="16dp" />
+</android.support.constraint.ConstraintLayout>

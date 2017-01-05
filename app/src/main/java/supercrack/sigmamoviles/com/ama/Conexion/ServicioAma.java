@@ -1,5 +1,8 @@
 package supercrack.sigmamoviles.com.ama.Conexion;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -11,11 +14,12 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import supercrack.sigmamoviles.com.ama.Modelo.ComentarioForo;
-import supercrack.sigmamoviles.com.ama.Modelo.RegistroComentario;
-import supercrack.sigmamoviles.com.ama.Modelo.Tema;
-import supercrack.sigmamoviles.com.ama.Modelo.Token;
-import supercrack.sigmamoviles.com.ama.Modelo.Usuario;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.ComentarioForo;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.PreguntaOpciones;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.RegistroComentario;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Tema;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Token;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Usuario;
 
 /**
  * Created by eglp on 22/12/2016.
@@ -54,4 +58,13 @@ public interface ServicioAma {
 
     @GET("api/foro/temas/{uuid}/comentarios/")
     Call<ArrayList<ComentarioForo>> getlistacomentario(@Path("uuid") String id , @Header("Authorization") String token);
+
+    @GET("api/encuesta/preguntas/1072a57a-6b50-47f6-865e-28fea29e1de9/")
+    Call<JsonObject> getlistaprregunta(@Header("Authorization") String token);
+
+    @POST("api/encuesta/respuesta/registrar/")
+    Call<PreguntaOpciones> registrarpregunta(@Header("Authorization") String token , @Body PreguntaOpciones preguntaOpcion);
+
+    @GET("api/contenido/all/")
+    Call<JsonArray> getlistaedades(@Header("Authorization") String token);
 }

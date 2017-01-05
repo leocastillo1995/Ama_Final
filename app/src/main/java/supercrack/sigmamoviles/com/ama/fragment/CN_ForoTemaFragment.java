@@ -26,9 +26,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import supercrack.sigmamoviles.com.ama.Activity.SCN_InicioActivity;
 import supercrack.sigmamoviles.com.ama.Adapter.AdapterTemas;
-import supercrack.sigmamoviles.com.ama.Array.ArrayTema;
+import supercrack.sigmamoviles.com.ama.Array.Conexion.ArrayTema;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
-import supercrack.sigmamoviles.com.ama.Modelo.Tema;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Tema;
 import supercrack.sigmamoviles.com.ama.R;
 
 /**

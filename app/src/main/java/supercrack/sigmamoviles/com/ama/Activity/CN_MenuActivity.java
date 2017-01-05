@@ -1,6 +1,8 @@
 package supercrack.sigmamoviles.com.ama.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -22,7 +24,7 @@ import supercrack.sigmamoviles.com.ama.Fragment.CN_AcercaDeFragment;
 import supercrack.sigmamoviles.com.ama.Fragment.CN_ForoTemaFragment;
 import supercrack.sigmamoviles.com.ama.Fragment.CN_InicioFragment;
 import supercrack.sigmamoviles.com.ama.Fragment.CN_PerfilUsuarioFragment;
-import supercrack.sigmamoviles.com.ama.Modelo.Token;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Token;
 import supercrack.sigmamoviles.com.ama.Preferencia.Preferen;
 import supercrack.sigmamoviles.com.ama.R;
 import supercrack.sigmamoviles.com.ama.Utils.ElementosWebservis;
@@ -50,9 +52,21 @@ public class CN_MenuActivity extends AppCompatActivity
 
         preference = new Preferen(this);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_cn__menu , new CN_InicioFragment()).commit();
-        getSupportActionBar().setTitle("Inicio");
+        if( Idendificador() == 0)
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_cn__menu , new CN_InicioFragment()).commit();
+            getSupportActionBar().setTitle("Inicio");
+        }
+        else
+        {
+
+            preference.modificarIndidificador(this , 0);
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_cn__menu , new CN_AcercaDeFragment()).commit();
+            getSupportActionBar().setTitle("Inicio");
+        }
 
     }
 
@@ -168,5 +182,11 @@ public class CN_MenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public int Idendificador()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences("Numero" , Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("numero" , 0);
     }
 }

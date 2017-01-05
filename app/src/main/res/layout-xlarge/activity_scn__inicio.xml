@@ -21,7 +21,7 @@
 
     <ScrollView
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
@@ -67,7 +67,7 @@
 
             <Button
                 android:text="@string/inicio"
-                android:id="@+id/button"
+                android:id="@+id/btn_scnactivityinicio_inicio"
                 android:background="@drawable/boton_redondo"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="30sp"

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import supercrack.sigmamoviles.com.ama.Activity.CN_TemaForoDetalleActivity;
-import supercrack.sigmamoviles.com.ama.Modelo.Tema;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Tema;
 import supercrack.sigmamoviles.com.ama.R;
 
 /**

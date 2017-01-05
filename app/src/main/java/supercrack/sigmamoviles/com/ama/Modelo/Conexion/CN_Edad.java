@@ -1,34 +1,20 @@
-package supercrack.sigmamoviles.com.ama.Modelo;
-
-import com.google.gson.annotations.SerializedName;
+package supercrack.sigmamoviles.com.ama.Modelo.Conexion;
 
 /**
- * Created by eglp on 26/12/2016.
+ * Created by eglp on 02/01/2017.
  */
 
-public class Tema {
+public class CN_Edad {
 
-    @SerializedName("uuid")
     private String uuid;
-
-    @SerializedName("titulo")
-    private String titulo;
-
-    @SerializedName("descripcion")
     private String descripcion;
-
-    @SerializedName("secuencia")
+    private String imagen;
     private int secuencia;
 
-    public Tema()
-    {
-
-    }
-
-    public Tema(String uuid, String titulo, String descripcion, int secuencia) {
+    public CN_Edad(String uuid, String descripcion, String imagen, int secuencia) {
         this.uuid = uuid;
-        this.titulo = titulo;
         this.descripcion = descripcion;
+        this.imagen = imagen;
         this.secuencia = secuencia;
     }
 
@@ -40,20 +26,20 @@ public class Tema {
         this.uuid = uuid;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public int getSecuencia() {

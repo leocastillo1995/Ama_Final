@@ -1,4 +1,4 @@
-package supercrack.sigmamoviles.com.ama.Modelo;
+package supercrack.sigmamoviles.com.ama.Modelo.Conexion;
 
 import com.google.gson.annotations.SerializedName;
 

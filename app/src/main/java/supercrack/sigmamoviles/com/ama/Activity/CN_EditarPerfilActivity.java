@@ -23,7 +23,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
-import supercrack.sigmamoviles.com.ama.Modelo.Usuario;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Usuario;
 import supercrack.sigmamoviles.com.ama.R;
 
 public class CN_EditarPerfilActivity extends AppCompatActivity {

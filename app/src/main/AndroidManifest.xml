@@ -11,50 +11,73 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.CN_InicioActivity" />
+        <activity android:name=".Activity.CN_InicioActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.CN_MenuActivity"
             android:label="@string/title_activity_cn__menu"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.SCN_InicioActivity" />
+            android:theme="@style/AppTheme" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SCN_InicioActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.CN_RegistroUsuarioActivity"
-            android:parentActivityName=".Activity.CN_InicioActivity">
+            android:parentActivityName=".Activity.CN_InicioActivity" android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.CN_InicioActivity" />
         </activity>
         <activity
             android:name=".Activity.CN_RegistroSexoActivity"
-            android:parentActivityName=".Activity.CN_RegistroUsuarioActivity">
+            android:parentActivityName=".Activity.CN_RegistroUsuarioActivity" android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.CN_RegistroUsuarioActivity" />
         </activity>
         <activity
             android:name=".Activity.CN_LogueoUsuarioActivity"
-            android:parentActivityName=".Activity.CN_InicioActivity">
+            android:parentActivityName=".Activity.CN_InicioActivity" android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.CN_InicioActivity" />
         </activity>
-        <activity android:name=".Activity.CN_EditarPerfilActivity" />
-        <activity android:name=".Activity.CN_TemaForoDetalleActivity" />
+        <activity android:name=".Activity.CN_EditarPerfilActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.CN_TemaForoDetalleActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.CN_ComentarioForoActivity"
-            android:parentActivityName=".Activity.CN_TemaForoDetalleActivity">
+            android:parentActivityName=".Activity.CN_TemaForoDetalleActivity" android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.CN_TemaForoDetalleActivity" />
         </activity>
-        <activity android:name=".Activity.CN_Pregunta1Activity"></activity>
+        <activity
+            android:name=".Activity.CN_Pregunta1Activity"
+            android:parentActivityName=".Activity.CN_MenuActivity" android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.CN_MenuActivity" />
+        </activity>
+        <activity android:name=".Activity.CN_PreguntasActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.CN_EdadActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.HabilidadesActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.CN_ListaVideoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SCN_Pregunta1Activity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SCN_PreguntasActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activity.CN_VideoCompletoActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Activity.CN_FinalizarActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SCN_EdadActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SCN_HabilidadActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SCN_ListaVideoActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activity.SCN_VideoCompletoActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Activity.SCN_HastaProntoActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

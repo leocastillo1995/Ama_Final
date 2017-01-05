@@ -26,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import supercrack.sigmamoviles.com.ama.Activity.CN_EditarPerfilActivity;
 import supercrack.sigmamoviles.com.ama.Activity.SCN_InicioActivity;
 import supercrack.sigmamoviles.com.ama.Conexion.ServicioAma;
-import supercrack.sigmamoviles.com.ama.Modelo.Usuario;
+import supercrack.sigmamoviles.com.ama.Modelo.Conexion.Usuario;
 import supercrack.sigmamoviles.com.ama.R;
 
 /**
